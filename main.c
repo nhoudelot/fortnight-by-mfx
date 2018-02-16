@@ -345,7 +345,7 @@ if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) /
    Mix_Music *musique;
   {
    
-    if(!(musique = Mix_LoadMUS("dxn-sl2.xm"))) {
+    if(!(musique = Mix_LoadMUS("/usr/share/fortnight-by-mfx/dxn-sl2.xm"))) {
         fprintf(stderr, "failed to load module\n");
         exit(1);
      }
