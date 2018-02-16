@@ -1,8 +1,8 @@
 SHELL = /bin/sh
 CC = gcc
 NASM = nasm
-CFLAGS += -O3 -flto -Wall -ffast-math -fforce-addr -fstrength-reduce -fno-expensive-optimizations -fschedule-insns2 $(shell sdl-config --cflags) $(shell libmikmod-config --cflags)
-LDFLAGS += $(shell sdl-config --libs) $(shell libmikmod-config --libs) -lm
+CFLAGS += -O3 -flto -Wall -ffast-math -fforce-addr -fstrength-reduce -fno-expensive-optimizations -fschedule-insns2 $(shell pkgconf sdl SDL_mixer --cflags) -std=gnu90
+LDFLAGS += $(shell pkgconf sdl SDL_mixer --libs) -lm
 RM_F = rm -f
 
 TARGET=fortnight-by-mfx
