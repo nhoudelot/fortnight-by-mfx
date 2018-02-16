@@ -1,5 +1,4 @@
 //3703
-#define _GNU_SOURCE
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -236,8 +235,8 @@ void duunaa_kirkkovene(char *dbuf, char *sbuf, int pitch, int xs, int ys, float 
     tab[i]=j<0?0:j>255?255:j;
   }
   for (y=0; y<ys; y++) {
-    dp=dbuf+y*pitch;
-    sp=sbuf+y*pitch;
+    dp=(unsigned char *)dbuf+y*pitch;
+    sp=(unsigned char *)sbuf+y*pitch;
     for (x=0; x<xs; x+=4) {
       *dp++=tab[*sp++]; *dp++=tab[*sp++]; *dp++=tab[*sp++]; *dp++=tab[*sp++];
     }
@@ -449,9 +448,9 @@ int main(int argc, char *argv[]) {
     }
     gounter=0; 
     if (!effu) desing(ovl->pixels[0], ovl->pitches[0], 320, 240, /*module->sngpos+fmod(*/timex*(1./1000/60*125/16*6/6.5)/*, 1)*/);
-    if (effu&1) rend(ovl->pixels[0], ovl->pitches[0], 320, 224, tsot, 5);
+    if (effu&1) rend((char *)ovl->pixels[0], ovl->pitches[0], 320, 224, tsot, 5);
 //    rend(ovl->pixels[0], ovl->pitches[0], 320, 240, tsot, 3);
-    if (effu&2) getframe(ovl->pixels[0], ovl->pitches[0], mov, 320, 240, timex*8);
+    if (effu&2) getframe((char *)ovl->pixels[0], ovl->pitches[0], mov, 320, 240, timex*8);
     if (effu&4) {
       short buf[64000], *s;
       int x, y;
@@ -460,7 +459,7 @@ int main(int argc, char *argv[]) {
       teesumu(buf, timex*.03);
       for (x=0; x<1024; x++) tab[x]=sqrt(x*63.9);
       for (y=0; y<360; y++) {
-        d=ovl->pixels[0]+y*ovl->pitches[0];
+        d=(char *)ovl->pixels[0]+y*ovl->pitches[0];
         s=buf+(y>>1)*160;
         for (x=0; x<160; x++, s++) {
           int c=*s>>4;

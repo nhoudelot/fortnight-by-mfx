@@ -227,18 +227,18 @@ void desing(unsigned char *buf, int pitch, int xs, int ys, float phi) {
 
 
   switch (xrand(6, phi)) {
-    case 0: rend(buf, pitch, xs, ys, tsot, 5); break;
-    case 5: rend(buf, pitch, xs, ys, tsot, 5); break;
-    case 1: getframe(buf, pitch, mov, xs, ys, phi*16384*2); break;
-    case 2: duunaa_sumu(buf, pitch, xs, ys, phi*(256+phi)); break;
-    case 3: duunaa_sumu(buf, pitch, xs, ys, phi*(386+phi*1.5)); break;
+    case 0: rend((char *)buf, pitch, xs, ys, tsot, 5); break;
+    case 5: rend((char *)buf, pitch, xs, ys, tsot, 5); break;
+    case 1: getframe((char *)buf, pitch, mov, xs, ys, phi*16384*2); break;
+    case 2: duunaa_sumu((char *)buf, pitch, xs, ys, phi*(256+phi)); break;
+    case 3: duunaa_sumu((char *)buf, pitch, xs, ys, phi*(386+phi*1.5)); break;
     case 4: {
       unsigned char *buf2=malloc(pitch*ys), *d=buf, *s=buf2;
       if (xrand(2, phi)==0)
-        duunaa_sumu(buf, pitch, xs, ys, phi*1.5*(512-phi*2.5));
+        duunaa_sumu((char *)buf, pitch, xs, ys, phi*1.5*(512-phi*2.5));
       else
-        getframe(buf, pitch, mov, xs, ys, phi*16384*2); 
-      duunaa_sumu(buf2, pitch, xs, ys, phi*(512-phi*2.5));
+        getframe((char *)buf, pitch, mov, xs, ys, phi*16384*2);
+      duunaa_sumu((char *)buf2, pitch, xs, ys, phi*(512-phi*2.5));
       for (; d<buf+ys*pitch; s+=4, d+=4) d[0]=d[0]*s[0]>>8,d[1]=d[1]*s[1]>>8,d[2]=d[2]*s[2]>>8,d[3]=d[3]*s[3]>>8;
       free(buf2);
     } break;
@@ -259,16 +259,16 @@ void desing(unsigned char *buf, int pitch, int xs, int ys, float phi) {
     case 2: foofoo(buf, pitch, xs, ys, 32+32*sin(phi*0.5) );break;
   }
   if(xrand(10,phi)<2) {
-    duunaa_kirkkovene(buf, buf, pitch, xs, ys, -kont, bri+1, .1, 0, 0);
+    duunaa_kirkkovene((char *)buf, (char *)buf, pitch, xs, ys, -kont, bri+1, .1, 0, 0);
   } else {
-    duunaa_kirkkovene(buf, buf, pitch, xs, ys, kont, bri, .1, 0, 0);
+    duunaa_kirkkovene((char *)buf, (char *)buf, pitch, xs, ys, kont, bri, .1, 0, 0);
   }
 //  duunaa_kirkkovene(buf, buf, pitch, xs, ys, kont*sin(1-fmod(phi*4,1)), bri*sin(1-fmod(phi*4,1)), .1, 0, 0);
 //  duunaa_kirkkovene(buf, buf, pitch, xs, ys, kont, bri, .1, 0, 0);
 //  foofoo(buf, pitch, xs, ys, 128+128*sin(1-fmod(phi*0.25,1)) );
 //  glaah(buf, pitch, xs, ys, 128+128*sin(1-fmod(phi*0.25,1)) );
   
-  duunaa_kirkkovene(buf, buf, pitch, xs, ys, 1, 0, 7, 0, 0);
+  duunaa_kirkkovene((char *)buf,(char *) buf, pitch, xs, ys, 1, 0, 7, 0, 0);
 
 }
 
