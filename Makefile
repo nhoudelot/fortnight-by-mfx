@@ -8,20 +8,17 @@ RM_F = rm -f
 TARGET=fortnight-by-mfx
 
 INSTALL = install
-INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
-INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
-INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     := $(INSTALL) -p -d -o root -g root  -m  755
+INSTALL_FILE    := $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM := $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DATA    := $(INSTALL) -p    -o root -g root  -m  644
 
 PREFIX = /usr
-EXEC_PREFIX     = $(PREFIX)
-BINDIR          = $(EXEC_PREFIX)/bin
+EXEC_PREFIX     := $(PREFIX)
+BINDIR          := $(EXEC_PREFIX)/bin
+datarootdir     := $(PREFIX)/share
+datadir         := $(PREFIX)/share/fortnight-by-mfx
 
-#si code gcc4 compilé via gcc5 le standard par défaut était different
-GCCVERSIONGTEQ5 := $(shell expr `gcc -dumpversion | cut -f1 -d.` \>= 5)
-ifeq "$(GCCVERSIONGTEQ5)" "1"
-    CFLAGS += -std=gnu90
-    CXXFLAGS += -fabi-compat-version=2
-endif
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
  NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
  MAKEFLAGS += -j$(NUMJOBS)
