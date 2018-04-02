@@ -28,7 +28,7 @@ a 'crap in two weeks' intro
 
 phn, kooma, haujobb, exceed, calodox, retro a.c, damage, farb-rausch, byterapers, doomsday, dekadence and all the rest...
 
-(*) so you want to start making quality linux-demos ?
+~(*) so you want to start making quality linux-demos ?  
 everything you need is included in the package. the code is conformant 
 to the finest standards and an excellent starting point for newbies to learn what it is all about. in no way it is done tired in 4am with quickly copypasted old crap and halfway optimized actually slowing it down or  anything like that. enjoy.
-
+~
